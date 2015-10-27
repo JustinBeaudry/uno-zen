@@ -26,8 +26,8 @@
     "fastclick": "*",
     "ghostHunter": "git://github.com/i11ume/ghostHunter.git",
     "pace": "*",
-    "reading-time": "*",
-    "fitvids": "*"
+    "fitvids": "*",
+    "reading-time": "git://github.com/JustinBeaudry/reading-time.git"
   },
   "ignore": [
     "**/.*",
