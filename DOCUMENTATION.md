@@ -171,7 +171,7 @@ Go to Ghost Admin panel → General → `Blog Cover`
 
 ### Cover Filter
 
-The linear gradient of the cover filter is based in `$cover-primary` and `$cover-secondary` colors. If you want to adapt the filter for your cover, check [background-filter](https://github.com/Kikobeats/uno-zen/blob/master/assets/scss/modules/_mixins.scss#L11) mixin.
+The linear gradient of the cover filter is based in `$cover-primary` and `$cover-secondary` colors. If you want to adapt the filter for your cover, check [background-filter](https://github.com/JustinBeaudry/uno-zen/blob/master/assets/scss/modules/_mixins.scss#L11) mixin.
 
 ### Custom static pages
 
@@ -179,7 +179,7 @@ Check the [page part](http://themes.ghost.org/v0.6.4/docs/page-context) in the G
 
 ### Multiaccount support
 
-You can enable the multiaccount support editing [posts.hbs](https://github.com/Kikobeats/uno-zen/blob/master/post.hbs#L11-L13) code commented inside the meta post information.
+You can enable the multiaccount support editing [posts.hbs](https://github.com/JustinBeaudry/uno-zen/blob/master/post.hbs#L11-L13) code commented inside the meta post information.
 
 ## Preparing for production
 

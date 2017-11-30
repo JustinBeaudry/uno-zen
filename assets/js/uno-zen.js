@@ -2,31 +2,40 @@
   'use strict';
 
   var $ = function(element) {
-    var el = document.querySelectorAll(element);
+    var el = document.querySelector(element);
 
     el.addClass = addClass.bind(el);
+    el.removeClass = removeClass.bind(el);
     el.toggleClass = toggleClass.bind(el);
     el.trigger = trigger.bind(el);
+    el.hide = hide.bind(el);
+    el.show = show.bind(el);
 
     return el;
   }
 
   function addClass(className) {
-    var el = this;
-    if (el.classList) {
-      el.classList.add(className);
+    if (this.classList) {
+      this.classList.add(className);
     } else {
-      el.className += ' ' + className;
+      this.className += ' ' + className;
     }
   }
 
-  function toggleClass(className) {
-    var el = this, classes, existingIndex;
+  function removeClass(className) {
+    if (this.classList)
+      this.classList.remove(className);
+    else
+      this.className = this.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  }
 
-    if (el.classList) {
-      el.classList.toggle(className);
+  function toggleClass(className) {
+    var classes, existingIndex;
+
+    if (this.classList) {
+      this.classList.toggle(className);
     } else {
-      classes = el.className.split(' ');
+      classes = this.className.split(' ');
       existingIndex = classes.indexOf(className);
 
       if (existingIndex >= 0) {
@@ -35,12 +44,12 @@
         classes.push(className);
       }
 
-      el.className = classes.join(' ');
+      this.className = classes.join(' ');
     }
   }
 
   function trigger(eventName, data) {
-    var el = this, event;
+    var event;
     if (window.CustomEvent) {
       event = new CustomEvent(eventName, data);
     } else {
@@ -48,7 +57,14 @@
       event.initCustomEvent(eventName, true, true, data);
     }
 
-    el.dispatchEvent(event);
+    this.dispatchEvent(event);
+  }
+
+  function hide() {
+    this.style.display = 'none';
+  }
+  function show() {
+    this.style.display = 'block';
   }
 
   document.addEventListener('DOMContentLoaded', function(event) {
@@ -157,7 +173,7 @@
       return $('.cover, main, #menu-button, html').toggleClass('expanded');
     });
 
-    $('.nav-blog > a, #avatar-link').click(function(event) {
+    $('.nav-blog > a, #avatar-link').addEventListener('click', function(event) {
       if (Uno.is('page', 'home')) {
         event.preventDefault();
         location.hash = location.hash === '' ? '#open' : '';
@@ -188,10 +204,10 @@
       FastClick.attach(el);
     }
     if (window.profile_title) {
-      $('#profile-title').innerText = window.profile_title;
+      $('#profile-title').textContent = window.profile_title;
     }
     if (window.profile_resume) {
-      $('#profile-resume').innerText = window.profile_resume;
+      $('#profile-resume').textContent = window.profile_resume;
     }
     if (Uno.is('device', 'desktop')) {
       $('a, :not([href*="mailto:"])').addEventListener('click', function() {
@@ -202,13 +218,12 @@
       });
     }
     if (Uno.is('page', 'post')) {
-      $('main').readingTime({
+      window.readingTime('main', {
         readingTimeTarget: '.post.reading-time > span'
       });
-      $('.content').fitVids();
     }
     if (Uno.is('page', 'error')) {
-      return $('#panic-button').click(function() {
+      return $('#panic-button').addEventListener('click', function() {
         var s;
         s = document.createElement('script');
         s.setAttribute('src', 'https://nthitz.github.io/turndownforwhatjs/tdfw.js');
@@ -216,13 +231,13 @@
       });
     }
 
-    var hideSearch, showSearch;
+    var hideSearch, showSearch, content = $('.content');
     showSearch = function() {
-      $(".content").hide();
+      content.hide();
       return $('#search-results').addClass('active');
     };
     hideSearch = function() {
-      $(".content").show();
+      content.show();
       return $('#search-results').removeClass('active');
     };
     return $("#search-field").ghostHunter({

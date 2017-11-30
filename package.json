@@ -1,25 +1,25 @@
 {
-  "name": "uno-zen",
+  "name": "uno-spaced",
   "description": "Minimalist and Elegant theme for Ghost",
-  "homepage": "https://github.com/kikobeats/uno-zen",
+  "homepage": "https://github.com/JustinBeaudry/uno-zen",
   "version": "2.5.7",
   "author": {
-    "name": "Kiko Beats",
-    "url": "https://github.com/kikobeats"
+    "name": "Justin Beaudry",
+    "url": "https://github.com/justinbeaudry"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kikobeats/uno-zen"
+    "url": "https://github.com/JustinBeaudry/uno-zen"
   },
   "bugs": {
-    "url": "https://github.com/Kikobeats/uno-zen/issues"
+    "url": "https://github.com/JustinBeaudry/uno-zen/issues"
   },
   "keywords": [
     "elegant",
     "ghost",
     "minimalism",
     "theme",
-    "uno",
+    "spaced",
     "zen"
   ],
   "devDependencies": {
@@ -33,6 +33,7 @@
     "gulp-concat": "*",
     "gulp-cssmin": "*",
     "gulp-header": "*",
+    "gulp-load-plugins": "^0.10.0",
     "gulp-minify-css": "*",
     "gulp-sass": "*",
     "gulp-strip-css-comments": "*",
